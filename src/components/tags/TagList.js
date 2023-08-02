@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllTags } from "../../managers/TagManager"
 
+import "./tags.css"
+
+
 export const TagList = () => {
 
   const [tags, setTags] = useState([])
@@ -15,17 +18,24 @@ export const TagList = () => {
   )
 
   return (
-    <div>
-      <h2>Tags</h2>
-      <ul>
-        {tags.map((tag) => (
-          <li key={tag.id}>
-            {tag.label}
-            <Link to={`/tags/${tag.id}/edit`}>Edit</Link>{" "}
-            <button>Delete</button>
-          </li>
-        ))}
-      </ul>
+
+    <div className="page-container tag-container">
+      <div className="left-side">
+        <h1 className="page-header">Tags</h1>
+        <ul className="tag-list">
+          {tags.map((tag) => (
+            <li key={tag.id} className="list-items">
+              <div className="list-name">{tag.label}</div>
+              <div className="edit-and-delete">
+                <button className="edit-button"><Link to={`/tags/${tag.id}/edit`}>Edit</Link></button>{" "}
+                <button className="delete-button">Delete</button> </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="right-side">
+
+      </div>
     </div>
   );
 }
