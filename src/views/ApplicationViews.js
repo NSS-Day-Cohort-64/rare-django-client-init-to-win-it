@@ -20,8 +20,14 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path=":postId" element={<PostDetails setToken={setToken} />} />
       </Route>
 
-      <Route path="/categories" element={<Category setToken={setToken} />} />
+      <Route path="/categories">
+        <Route index element={<Category setToken={setToken} />} />
+      </Route>
 
-      </Routes>
-      </>
+      <Route path="/tags">
+        <Route index element={<Category setToken={setToken} />} />
+      </Route>
+
+    </Routes>
+  </>
 };
