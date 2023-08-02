@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllTags } from "../../managers/TagManager"
+
 import "./tags.css"
+
 
 export const TagList = () => {
 
@@ -16,6 +18,7 @@ export const TagList = () => {
   )
 
   return (
+
     <div className="page-container tag-container">
       <div className="left-side">
         <h1 className="page-header">Tags</h1>
