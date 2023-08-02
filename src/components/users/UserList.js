@@ -23,8 +23,8 @@ export const UserList = () => {
                         {users.map((user) => (
                             <li key={user.id} className="list-items">
                                 <div className="list-name">Username: {user.username}</div>
-                                <div className="list-name">First Name: {user.firstName}</div>
-                                <div className="list-name">Last Name: {user.lastName}</div>
+                                <div className="list-name">First Name: {user.first_name}</div>
+                                <div className="list-name">Last Name: {user.last_name}</div>
                                 <div className="list-name">Email: {user.email}</div>
                                 <div className="edit-and-delete">
                                     <button className="edit-button">
