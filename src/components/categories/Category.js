@@ -12,7 +12,7 @@ export const Category = () => {
         getCategories()
             .then((data) => setCategories(data))
             .catch((error) => console.error(error));
-    }, [categories]); // Add 'categories' to the dependency array
+    }, []); 
 
     return (
         <div>
