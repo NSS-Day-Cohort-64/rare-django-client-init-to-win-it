@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllTags } from "../../managers/TagManager"
+import { TagForm } from "./TagForm";
 import "./tags.css"
 
 
@@ -35,7 +36,7 @@ export const TagList = () => {
           </ul>
         </div>
         <div className="right-side">
-
+          <TagForm />
         </div>
       </div>
     </div>
