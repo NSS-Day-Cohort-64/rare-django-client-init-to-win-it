@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getCategories } from "../../managers/CategoryManager";
+import { getCategories, createCategory } from "../../managers/CategoryManager";
 import { CategoryForm } from "./CategoryForm";
-import "./categories.css"
+import "./categories.css";
 
 export const Category = () => {
     // State to store categories
-    const [categories, setCategories] = React.useState([]);
+    const [categories, setCategories] = useState([]);
 
     // Fetch categories when the component mounts
-    React.useEffect(() => {
+    useEffect(() => {
         getCategories()
             .then((data) => setCategories(data))
             .catch((error) => console.error(error));
-    }, []); 
+    }, []);
+
+    const handleCreateCategory = (newCategory) => {
+        createCategory(newCategory)
+            .then((response) => {
+                if (response && response.id) {
+                    // Update the category list with the newly created category
+                    setCategories([...categories, response]);
+                } else {
+                    throw new Error('Failed to create category. Please try again later.');
+                }
+            })
+            .catch((error) => console.error(error));
+    };
 
     return (
         <div className="page-container">
@@ -33,8 +46,7 @@ export const Category = () => {
                     </ul>
                 </div>
                 <div className="right-side">
-                    {/* Display the CategoryForm component */}
-                    <CategoryForm />
+                    <CategoryForm handleCreateCategory={handleCreateCategory} />
                 </div>
             </div>
         </div>
