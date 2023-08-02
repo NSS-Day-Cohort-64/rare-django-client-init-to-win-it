@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from 'react-router-dom'
-import { getAllTags } from "../../managers/TagManager"
+import { getAllTags, createTag } from "../../managers/TagManager"
+import { TagForm } from "./TagForm";
 import "./tags.css"
 
 
@@ -15,6 +16,19 @@ export const TagList = () => {
     },
     []
   )
+
+  const handleCreateTag = (newTag) => {
+    createTag(newTag)
+      .then((response) => {
+        if (response && response.id) {
+          // Update the tag list with the newly created category
+          setTags([...tags, response]);
+        } else {
+          throw new Error('Failed to create tag. Please try again later.');
+        }
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
 
@@ -35,7 +49,7 @@ export const TagList = () => {
           </ul>
         </div>
         <div className="right-side">
-
+          <TagForm handleCreateTag={handleCreateTag} />
         </div>
       </div>
     </div>
