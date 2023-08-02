@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createTag } from '../../managers/TagManager';
 
-export const TagForm = () => {
+export const TagForm = ({ handleCreateTag }) => {
   const [tagLabel, setTagLabel] = useState('');
 
   const handleSubmit = (e) => {
@@ -11,14 +11,8 @@ export const TagForm = () => {
       label: tagLabel
     };
 
-    createTag(newTag)
-      .then((response) => {
-        if (response.ok) {
-          setTagLabel('');
-        } else {
-          throw new Error('Failed to create tag. Please try again later.');
-        }
-      })
+    handleCreateTag(newTag); // Call the function to handle category creation
+    setTagLabel(''); // Clear the input field
   };
 
   return (
