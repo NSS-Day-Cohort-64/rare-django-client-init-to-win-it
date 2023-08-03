@@ -21,10 +21,11 @@ export function UserPosts({ token }) {
           (postObject) => {
 
             return <div className="post">
-
               <div className="title"><Link to={`/posts/${postObject.id}`} key={postObject.id}>{postObject.title}</Link></div>
+              <div>Publication Date: {postObject.publication_date}</div>
               <section className="post-data" >
-                <div>{postObject.author.first_name}{postObject.author.last_name}</div>
+                <img src={postObject.image_url} alt="{postObject.title}" className="article-picture" />
+                <div>Author: {postObject.author.first_name}{postObject.author.last_name}</div>
                 <div>{postObject.category.label}</div>
               </section>
             </div>
