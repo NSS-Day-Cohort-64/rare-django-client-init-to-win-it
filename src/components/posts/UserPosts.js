@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getUserPosts } from '../../managers/PostManager'
+import "./posts.css";
 
 export function UserPosts({ token }) {
   const [userPosts, setUserPosts] = useState([])
@@ -14,20 +15,21 @@ export function UserPosts({ token }) {
 
   return (
     <div className="container">
-      <h1 className="posts-title">All Posts</h1>
+      <button className="new-button">New Post +</button>
 
-      <article className="post">
+      <article className="post-list">
+
         {userPosts.map(
           (postObject) => {
 
             return <div className="post">
-              <div className="title"><Link to={`/posts/${postObject.id}`} key={postObject.id}>{postObject.title}</Link></div>
-              <div>Publication Date: {postObject.publication_date}</div>
+              <div className="header"><Link to={`/posts/${postObject.id}`} key={postObject.id} className='title'>{postObject.title}</Link>Publication Date: {postObject.publication_date}</div>
               <section className="post-data" >
                 <img src={postObject.image_url} alt="{postObject.title}" className="article-picture" />
-                <div>Author: {postObject.author.first_name}{postObject.author.last_name}</div>
-                <div>{postObject.category.label}</div>
               </section>
+              <div className="author-info">Author: {postObject.user.first_name} {postObject.user.last_name}</div>
+
+
             </div>
           }
 
