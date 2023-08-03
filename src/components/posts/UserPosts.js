@@ -30,8 +30,10 @@ export function UserPosts({ token }) {
               <section className="footer">
                 <div className="author-info">Author: {postObject.user.first_name} {postObject.user.last_name}</div>
                 <div className='post-buttons'>
-                  <button class="icon-button"><i class="fas fa-cog"></i> </button>
-                  <button class="icon-button"><i class="fas fa-trash"></i></button>
+                  <Link to="/:postId/edit" className="edit-icon-button">
+                    <i className="fas fa-cog"></i>
+                  </Link>
+                  <button class="delete-icon-button"><i class="fas fa-trash"></i></button>
                 </div>
               </section>
 

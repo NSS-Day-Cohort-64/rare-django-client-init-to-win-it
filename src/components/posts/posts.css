@@ -114,16 +114,23 @@ section.footer {
   background-color: white;
 }
 
-.post-buttons button {
-  margin-right: 10px;
-}
 
-.icon-button {
+.edit-icon-button {
   background: none;
   border: none;
   font-size: 2rem;
   color: #333;
   cursor: pointer;
+  margin-right: 25px;
+}
+
+.delete-icon-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 
