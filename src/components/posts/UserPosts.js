@@ -27,8 +27,9 @@ export function UserPosts({ token }) {
               <section className="post-data" >
                 <img src={postObject.image_url} alt="{postObject.title}" className="article-picture" />
               </section>
-              <div className="author-info">Author: {postObject.user.first_name} {postObject.user.last_name}</div>
-
+              <section className="footer">
+                <div className="author-info">Author: {postObject.user.first_name} {postObject.user.last_name}</div>
+              </section>
 
             </div>
           }
