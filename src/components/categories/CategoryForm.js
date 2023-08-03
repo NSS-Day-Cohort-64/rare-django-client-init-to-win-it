@@ -15,8 +15,8 @@ export const CategoryForm = ({ handleCreateCategory }) => {
     };
 
     return (
-        <div>
-            <h2>Create Category</h2>
+        <div className='form'>
+            <h2 className="form-title">Create Category</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="categoryLabel">Name:</label>
                 <input

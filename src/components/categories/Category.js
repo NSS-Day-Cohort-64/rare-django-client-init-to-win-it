@@ -18,15 +18,20 @@ export const Category = () => {
     const handleCreateCategory = (newCategory) => {
         createCategory(newCategory)
             .then((response) => {
+                console.log('API Response:', response);
                 if (response && response.id) {
-                    // Update the category list with the newly created category
-                    setCategories([...categories, response]);
+                    // Add the new category to the existing categories array
+                    const updatedCategories = [...categories, response];
+                    // Sort the categories alphabetically by label before updating the state
+                    updatedCategories.sort((a, b) => a.label.localeCompare(b.label));
+                    setCategories(updatedCategories);
                 } else {
                     throw new Error('Failed to create category. Please try again later.');
                 }
             })
             .catch((error) => console.error(error));
     };
+
 
     return (
         <div className="page-container">
