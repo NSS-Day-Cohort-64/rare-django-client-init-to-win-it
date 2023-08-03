@@ -29,6 +29,10 @@ export function UserPosts({ token }) {
               </section>
               <section className="footer">
                 <div className="author-info">Author: {postObject.user.first_name} {postObject.user.last_name}</div>
+                <div className='post-buttons'>
+                  <button class="icon-button"><i class="fas fa-cog"></i> </button>
+                  <button class="icon-button"><i class="fas fa-trash"></i></button>
+                </div>
               </section>
 
             </div>
