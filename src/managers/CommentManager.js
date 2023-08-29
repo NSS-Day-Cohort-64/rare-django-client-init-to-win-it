@@ -1,5 +1,5 @@
 export const createComment = (newComment) => {
-    return fetch("http://localhost:8088/comments", {
+    return fetch("http://localhost:8000/comments", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
