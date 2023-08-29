@@ -20,43 +20,10 @@ Rare is a publishing platform that allows users to share their thoughts in a blo
 ## Installation
 
 ### Backend
-Certainly! Below is a sample README file that includes a link to the server-side code.
-
----
-
-# Project Name
-
-## Description
-
-This is the client-side application for [Project Name]. It is built using [Technologies used, e.g., React, Redux, etc.]. This application allows users to [Briefly describe what the application does].
-
-## Features
-
-- User authentication with JWT
-- [Other features]
-- [Other features]
-
-## Installation
-
-1. Clone this repository and navigate into the directory.
-2. Run `npm install` to install dependencies.
-3. Run `npm start` to start the application.
-
 ## Server-Side Code
 
 The server-side code for this project can be found [here](https://github.com/NSS-Day-Cohort-64/rare-django-server-rare-django-server-init-to-win-it).
 
-## Contributing
-
-If you'd like to contribute, please fork the repository and make changes as you'd like. Pull requests are warmly welcome.
-
-## License
-
-[Your License]
-
----
-
-Feel free to modify this template as needed for your project!
 1. Clone the repository to your local machine.
 2. Navigate to the `backend` directory.
 3. Run `python manage.py migrate` to set up the database.
