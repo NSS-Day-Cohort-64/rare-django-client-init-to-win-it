@@ -25,7 +25,7 @@ Rare is a publishing platform that allows users to share their thoughts in a blo
 The server-side code for this project can be found [here](https://github.com/NSS-Day-Cohort-64/rare-django-server-rare-django-server-init-to-win-it).
 
 1. Clone the repository to your local machine.
-2. Navigate to the `backend` directory.
+2. Navigate to the main directory.
 3. Run `python manage.py migrate` to set up the database.
 4. Run `python manage.py runserver` to start the server.
 
