@@ -63,7 +63,7 @@ export const Category = () => {
 
   return (
     <div className="page-container">
-      <h1 className="page-header">categories</h1>
+      <h1 className="page-header">Categories</h1>
       <div className="tag-container">
         <div className="left-side">
           <ul className="list">
