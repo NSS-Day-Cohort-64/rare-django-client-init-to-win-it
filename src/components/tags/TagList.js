@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllTags, createTag, deleteTag, updateTag } from '../../managers/TagManager';
 import { TagForm } from './TagForm';
-import { TagEditForm } from './TagEditForm';  // Import TagEditForm
+import { TagEditForm } from './TagEditForm';
 import './tags.css';
 
 export const TagList = () => {
@@ -28,12 +28,14 @@ export const TagList = () => {
   };
 
   const handleDeleteTag = (tagId) => {
-    deleteTag(tagId)
-      .then(() => {
-        const updatedTags = tags.filter(tag => tag.id !== tagId);
-        setTags(updatedTags);
-      })
-      .catch((error) => console.error(error));
+    if (window.confirm('Are you sure you want to delete this tag?')) {
+      deleteTag(tagId)
+        .then(() => {
+          const updatedTags = tags.filter(tag => tag.id !== tagId);
+          setTags(updatedTags);
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   const handleUpdateTag = (tagId, updatedTag) => {
@@ -41,7 +43,7 @@ export const TagList = () => {
       .then(() => {
         const updatedTags = tags.map(tag => {
           if (tag.id === tagId) {
-            return { ...updatedTag, id: tagId };  // Make sure the id remains the same
+            return { ...updatedTag, id: tagId };
           }
           return tag;
         });
@@ -67,7 +69,7 @@ export const TagList = () => {
         <div className="left-side">
           <ul className="list">
             {tags.map((tag) => (
-              <li key={tag.id} className="list-items">  {/* Ensure each tag has a unique key */}
+              <li key={tag.id} className="list-items">
                 <div className="list-name">{tag.label}</div>
                 <div className="edit-and-delete">
                   <button className="edit-button" onClick={() => startEditing(tag.id, tag.label)}>Edit</button>{" "}
