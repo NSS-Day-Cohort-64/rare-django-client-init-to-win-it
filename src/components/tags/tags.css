@@ -11,46 +11,69 @@
   font-size: 24px;
   margin-bottom: 10px;
   margin-left: 300px;
-  margin-top: 50px
+  margin-top: 50px;
 }
 
 .list {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 .list-items {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* Distributes items on both sides */
-  border: 1px solid;
+  border: 1px solid #ccc;
   height: 40px;
   width: 400px;
   padding: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.list-items:hover {
+  background-color: #a4fcd3;  /* Darker gray background on hover */
 }
 
 .list-name {
-  /* Determines how much space the list name takes */
   flex: 1;
-  /* This will make the list name expand to fill the available space */
 }
 
 .edit-and-delete {
-  /* spacing between the edit and delete buttons */
   margin-left: 10px;
 }
 
-.edit-button {
+.edit-button,
+.delete-button {
   height: 25px;
+  padding: 0 12px;
+  border-radius: 12px;  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+  transition: background-color 0.3s ease;  /* Smooth transition */
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: rgb(84, 177, 149);
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: rgb(47, 177, 137);  /* Darker shade on hover */
 }
 
 .delete-button {
-  height: 25px;
+  background-color: rgb(207, 99, 99);
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: rgb(165, 79, 79);  /* Darker shade on hover */
 }
 
 .form {
-  border: 1px solid;
+  border: 1px solid #ccc;
   border-radius: 20px;
   padding: 20px;
 }
