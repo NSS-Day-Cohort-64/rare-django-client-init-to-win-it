@@ -12,7 +12,9 @@ export const Register = ({setToken}) => {
   const password = useRef()
   const verifyPassword = useRef()
   const passwordDialog = useRef()
+  const account_type = useRef();
   const navigate = useNavigate()
+
 
   const handleRegister = (e) => {
     e.preventDefault()
@@ -24,7 +26,8 @@ export const Register = ({setToken}) => {
         last_name: lastName.current.value,
         email: email.current.value,
         password: password.current.value,
-        bio: bio.current.value
+        bio: bio.current.value,
+        account_type: account_type.current.value
       }
 
       registerUser(newUser)
@@ -71,6 +74,16 @@ export const Register = ({setToken}) => {
             <input className="input" type="email" ref={email} />
           </div>
         </div>
+
+        <div className="field">
+          <label className="label">Account Type</label>
+        <div className="control">
+          <select className="select" ref={account_type}>
+            <option value="author">Author</option>
+            <option value="reader">Reader</option>
+          </select>
+        </div>
+      </div>
 
         <div className="field">
           <label className="label">Password</label>
