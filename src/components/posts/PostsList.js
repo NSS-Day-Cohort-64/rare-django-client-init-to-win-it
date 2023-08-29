@@ -20,22 +20,24 @@ export const PostList = () => {
       <h1 className="posts-title">All Posts</h1>
 
       <article className="">
-        {posts.map(
-          (postObject) => {
-
-            return <div className="post">
-
-              <div className="title"><Link to={`/posts/${postObject.id}`} key={postObject.id}>{postObject.title}</Link></div>
-              <section className="" >
-                <div>{postObject.author.first_name}{postObject.author.last_name}</div>
-                <div>{postObject.category.label}</div>
-              </section>
+        {posts.map((postObject) => (
+          <div className="post" key={postObject.id}>
+            <div className="title">
+              <Link to={`/posts/${postObject.id}`}>{postObject.title}</Link>
             </div>
-          }
-
-        )
-        }
-      </article >
-    </div >
+            <section className="">
+              <div>{postObject.author.full_name} </div>
+              <div>{postObject.category.label}</div>
+            </section>
+          </div>
+        ))}
+      </article>
+    </div>
   )
 }
+
+
+
+
+
+
