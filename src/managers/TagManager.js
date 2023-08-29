@@ -1,5 +1,5 @@
 export const createTag = (newTag) => {
-  return fetch("http://localhost:8088/tags", {
+  return fetch("http://localhost:8000/tags", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,12 +16,10 @@ export const createTag = (newTag) => {
 };
 
 export const getAllTags = () => {
-  return fetch("http://localhost:8088/tags")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to fetch tags.");
-      }
-    });
-};
+  return fetch("http://localhost:8000/tags", {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`
+    }
+  })
+    .then((response => response.json()))
+}
