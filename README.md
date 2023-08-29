@@ -31,7 +31,7 @@ The server-side code for this project can be found [here](https://github.com/NSS
 
 ### Frontend
 
-1. Navigate to the `frontend` directory.
+1. Navigate to the main directory.
 2. Run `npm install` to install the required packages.
 3. Run `npm start` to start the development server.
 
@@ -53,12 +53,6 @@ The server-side code for this project can be found [here](https://github.com/NSS
 
 If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
 
-
-
-<!-- TODO: Finish writing the readme -->
