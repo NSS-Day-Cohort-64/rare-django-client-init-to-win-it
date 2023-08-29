@@ -1,11 +1,61 @@
 # Rare: The Publishing Platform for the Discerning Writer
 
-## Getting Started
-1. Install dependencies: `npm install`
-2. Run the code `npm start`
-<!-- TODO: Update the remaining steps if anything changes -->
-3. With the server also running, check that the login, register, and logout functionality is in working.
-4. This template is using [Bulma](https://bulma.io/documentation) for styling. Take a little bit of time to familiarize yourself with the framework if you would like to continue using it.
+# Rare Publishing Platform
+
+## Description
+
+Rare is a publishing platform that allows users to share their thoughts in a blog-like format. Users can create, edit, and delete posts, as well as comment on existing posts. Users can also add categories and tags to their posts. This repository contains the client-side code for the platform.
+
+## Technologies Used
+
+- React.js
+- Django REST Framework
+- SQLite
+
+## Features
+
+- User authentication with JWT
+- CRUD operations for posts, comments, tags and categories
+
+## Installation
+
+### Backend
+
+1. Clone the repository to your local machine.
+2. Navigate to the `backend` directory.
+3. Run `python manage.py migrate` to set up the database.
+4. Run `python manage.py runserver` to start the server.
+
+### Frontend
+
+1. Navigate to the `frontend` directory.
+2. Run `npm install` to install the required packages.
+3. Run `npm start` to start the development server.
+
+## API Endpoints
+
+- `/users`: User operations
+- `/posts`: Post operations
+- `/comments`: Comment operations
+- `/categories`: Category operations
+-`/tags`: Tag operations
+
+## Usage
+
+1. Open the frontend application in your browser.
+2. Register a new user or log in.
+3. Create, edit, or delete posts and comments.
+
+## Contributing
+
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+---
+
 
 
 <!-- TODO: Finish writing the readme -->
