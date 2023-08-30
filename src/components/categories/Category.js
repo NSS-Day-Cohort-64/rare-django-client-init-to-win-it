@@ -1,59 +1,98 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { getCategories, createCategory } from "../../managers/CategoryManager";
-import { CategoryForm } from "./CategoryForm";
-import "./categories.css";
+import React, { useState, useEffect } from 'react';
+import { getCategories, createCategory, deleteCategory, updateCategory } from '../../managers/CategoryManager';
+import { CategoryForm } from './CategoryForm';
+import { CategoryEditForm } from './CategoryEditForm';
+import './categories.css';
 
 export const Category = () => {
-    // State to store categories
-    const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [editingCategoryId, setEditingCategoryId] = useState(null);
+  const [editingCategoryLabel, setEditingCategoryLabel] = useState('');
 
-    // Fetch categories when the component mounts
-    useEffect(() => {
-        getCategories()
-            .then((data) => setCategories(data))
-            .catch((error) => console.error(error));
-    }, []);
+  useEffect(() => {
+    getCategories().then((categoryData) => setCategories(categoryData));
+  }, []);
 
-    const handleCreateCategory = (newCategory) => {
-        createCategory(newCategory)
-            .then((response) => {
-                console.log('API Response:', response);
-                if (response && response.id) {
-                    // Add the new category to the existing categories array
-                    const updatedCategories = [...categories, response];
-                    // Sort the categories alphabetically by label before updating the state
-                    updatedCategories.sort((a, b) => a.label.localeCompare(b.label));
-                    setCategories(updatedCategories);
-                } else {
-                    throw new Error('Failed to create category. Please try again later.');
-                }
-            })
-            .catch((error) => console.error(error));
-    };
+  const handleCreateCategory = (newCategory) => {
+    return createCategory(newCategory)
+      .then((response) => {
+        if (response && response.id) {
+          const updatedCategories = [...categories, response];
+          updatedCategories.sort((a, b) => a.label.localeCompare(b.label));
+          setCategories(updatedCategories);
+        } else {
+          throw new Error('Failed to create a category.');
+        }
+      });
+  };
 
+  const handleDeleteCategory = (categoryId) => {
+    if (window.confirm('Are you sure you want to delete this category?')) {
+      deleteCategory(categoryId)
+        .then(() => {
+          const updatedCategories = categories.filter(category => category.id !== categoryId);
+          setCategories(updatedCategories);
+        })
+        .catch((error) => console.error(error));
+    }
+  };
 
-    return (
-        <div className="page-container">
-            <h1 className="page-header">Categories</h1>
-            <div className="category-container">
-                <div className="left-side">
-                    <ul className="list">
-                        {categories.map((category) => (
-                            <li key={category.id} className="list-items">
-                                <div className="list-name">{category.label}{" "}</div>
-                                <div className="edit-and-delete">
-                                    <button className="edit-button"><Link to={`/categories/${category.id}/edit`}>Edit</Link></button>{" "}
-                                    <button className="delete-button">Delete</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+  const handleUpdateCategory = (categoryId, updatedCategory) => {
+    updateCategory(categoryId, updatedCategory)
+      .then(() => {
+        const updatedCategories = categories.map(category => {
+          if (category.id === categoryId) {
+            return { ...updatedCategory, id: categoryId };
+          }
+          return category;
+        });
+        setCategories(updatedCategories);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const startEditing = (categoryId, label) => {
+    setEditingCategoryId(categoryId);
+    setEditingCategoryLabel(label);
+  };
+
+  const stopEditing = () => {
+    setEditingCategoryId(null);
+    setEditingCategoryLabel('');
+  };
+
+  return (
+    <div className="page-container">
+      <h1 className="page-header">Categories</h1>
+      <div className="tag-container">
+        <div className="left-side">
+          <ul className="list">
+            {categories.map((category) => (
+              <li key={category.id} className="list-items">
+                <div className="list-name">{category.label}</div>
+                <div className="edit-and-delete">
+                  <button className="edit-button" onClick={() => startEditing(category.id, category.label)}>Edit</button>{" "}
+                  <button className="delete-button" onClick={() => handleDeleteCategory(category.id)}>Delete</button>
                 </div>
-                <div className="right-side">
-                    <CategoryForm handleCreateCategory={handleCreateCategory} />
-                </div>
-            </div>
+              </li>
+            ))}
+          </ul>
         </div>
-    );
+        <div className="right-side">
+          {editingCategoryId ? (
+            <CategoryEditForm
+              categoryId={editingCategoryId}
+              initialLabel={editingCategoryLabel}
+              handleUpdateCategory={(categoryId, updatedCategory) => {
+                handleUpdateCategory(categoryId, updatedCategory);
+                stopEditing();
+              }}
+            />
+          ) : (
+            <CategoryForm handleCreateCategory={handleCreateCategory} />
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
