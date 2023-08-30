@@ -41,11 +41,3 @@ useEffect(() => {
 }
 
 export default PostDetails
-
-
-// useEffect(() => {
-//   getSinglePost(postId)
-//     .then(setPost);
-//   getPostComments(postId)
-//     .then(setComments);
-// }, [postId])
