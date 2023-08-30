@@ -16,13 +16,13 @@ export const PostForm = ({ categories, tags, token }) => {
             user_id: token,
             title: postTitle,
             content: postContent,
-            category_id: selectedCategory,
+            category: parseInt(selectedCategory),
             tags: selectedTags
         };
 
         createPost(newPost)
             .then((response) => {
-                if (response) {
+                if (response.id) {
                     navigate(`/posts/${response.id}`)
                 }
             })
