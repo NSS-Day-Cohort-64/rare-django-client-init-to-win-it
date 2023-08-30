@@ -36,6 +36,9 @@ export const PostList = () => {
         )
         }
       </article >
+            <Link to="/posts/create" className="add-post-button">
+        Add Post +
+      </Link>
     </div >
   )
 }
