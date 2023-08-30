@@ -21,11 +21,11 @@ export const PostForm = ({ categories, tags, token }) => {
         };
 
         createPost(newPost)
-            .then((response) => {
-                if (response.id) {
-                    navigate(`/posts/${response.id}`)
-                }
-            })
+        .then(response => response.json())
+        .then((data) => {
+            const createdPostId = data.id;
+            navigate(`/posts/${createdPostId}`);
+        });
     };
 
     return (
