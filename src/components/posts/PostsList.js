@@ -29,7 +29,7 @@ export const PostList = () => {
               </section>
               <button    
              onClick={() => {
-              navigate(`/posts/edit`);
+              navigate(`/posts/${postObject.id}/edit`);
              }}>Edit</button>
             </div>
           })}

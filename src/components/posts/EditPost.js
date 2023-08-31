@@ -45,6 +45,7 @@ export const EditPostForm = ({ token }) => {
         event.preventDefault();
 
         const updatedPost = {
+            id: postId,
             title: currentPost.title,
             content: currentPost.content,
             category: parseInt(currentPost.category),
