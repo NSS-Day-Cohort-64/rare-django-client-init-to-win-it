@@ -16,7 +16,7 @@ export const UserList = () => {
 
     return (
         <div className="user-page-container">
-            <h1 className="user-page-header">User Management</h1>
+            <h1 className="page-header">User List</h1>
             <div className="user-user-container">
                 <div className="user-left-side">
                     <ul className="user-list">
