@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getSinglePost } from '../../managers/PostManager'
 import { getPostComments } from '../../managers/CommentManager'
 
+
 function PostDetails() {
+  const navigate = useNavigate()
   const [post, setPost] = useState({})
   const [comments, setComments] = useState([])
   const { postId } = useParams()
@@ -26,6 +28,7 @@ useEffect(() => {
       <br />
       <div className="post__content">{post.content}</div>
       <br />
+      
       <h4>Comments:</h4>
       <ul className="comments_list">
         {comments.map(comment => (
@@ -41,3 +44,5 @@ useEffect(() => {
 }
 
 export default PostDetails
+  
+  // < button button onClick = {() => { navigate(`/comments/${postId}`) }}> Write a comment</button >

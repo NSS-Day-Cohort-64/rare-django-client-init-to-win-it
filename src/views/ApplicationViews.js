@@ -10,6 +10,7 @@ import { TagList } from "../components/tags/TagList"
 import { Category } from "../components/categories/Category"
 import { UserPosts } from "../components/posts/UserPosts"
 import { UserList } from "../components/users/UserList"
+import { Comments } from "../components/comments/comments"
 
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -24,6 +25,8 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route index element={<PostList setToken={setToken} />} />
           <Route path=":postId" element={<PostDetails setToken={setToken} />} />
         </Route>
+        <Route path="/comments/:postId" element={<Comments token={token} />} />
+
 
         <Route path="myPosts" element={<UserPosts token={token} setToken={setToken} />} />
 
