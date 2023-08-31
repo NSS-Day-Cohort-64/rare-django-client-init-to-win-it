@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { createComment } from "../managers/CommentManager"
+import { createComment } from "../../managers/CommentManager"
 
 export const Comments = () => {
     const {postId} = useParams()
@@ -23,8 +23,7 @@ export const Comments = () => {
         createComment({
             "author_id": localUserObject,
             "post_id": parseInt(postId),
-            "content": comment,
-            "time_stamp": date_time
+            "content": comment
         }).then(newComment => setNewComment(newComment))
     }
 
