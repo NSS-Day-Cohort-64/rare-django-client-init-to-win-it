@@ -42,6 +42,8 @@ export const ApplicationViews = ({ token, setToken }) => {
           <Route path=":postId" element={<PostDetails setToken={setToken} />} />
           <Route path="create" element={<PostForm token={token} setToken={setToken} categories={categories} tags={tags} />} />
         </Route>
+        
+
 
         <Route path="myPosts" element={<UserPosts token={token} setToken={setToken} />} />
 
