@@ -46,6 +46,8 @@ export const Category = () => {
           }
           return category;
         });
+        // Sort the updated categories
+        updatedCategories.sort((a, b) => a.label.localeCompare(b.label));
         setCategories(updatedCategories);
       })
       .catch((error) => console.error(error));
@@ -63,7 +65,6 @@ export const Category = () => {
 
   return (
     <div className="page-container">
-      
       <div className="tag-container">
         <div className="left-side">
           <h1 className="page-header">Categories</h1>

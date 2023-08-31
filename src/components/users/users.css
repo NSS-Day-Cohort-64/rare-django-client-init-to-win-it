@@ -1,13 +1,14 @@
 /* General layout */
 .user-page-container {
   margin: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Comfortaa", Arial, sans-serif;
   max-width: 100%;
   width: 100%;
 }
 
 .user-page-header {
   font-size: 2em;
+  font-family: "Comfortaa", Arial, sans-serif;
   margin-bottom: 20px;
 }
 
@@ -44,15 +45,16 @@
 .user-list-items {
   background-color: #f9f9f9;
   border: 1px solid #ccc;
+  font-family: "Comfortaa", Arial, sans-serif;
   border-radius: 5px;
-  padding: 40px;
-  margin: 20px 0;
+  padding: 20px;  /* Reduced from 40px */
+  margin: 10px 0;  /* Reduced from 20px */
   width: 100%;
 }
 
 .user-list-name {
-  margin: 15px 0;
-  font-size: 1.2em;
+  margin: 8px 0;  /* Reduced from 15px */
+  font-size: 1em;  /* Reduced from 1.2em */
 }
 
 /* Button styling */
@@ -60,7 +62,7 @@
   background-color: rgb(84, 177, 149);
   color: white;
   border: none;
-  padding: 15px 30px;
+  padding: 15px 10px;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
@@ -72,5 +74,9 @@
 }
 
 .user-profile-button:hover {
-  background-color: #0056b3;
+  background-color: #cfffe9;
+}
+
+* {
+  font-family: "Comfortaa", Arial, sans-serif;
 }

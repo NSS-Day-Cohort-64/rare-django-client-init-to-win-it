@@ -11,15 +11,20 @@ export const TagList = () => {
   const [editingTagLabel, setEditingTagLabel] = useState('');
 
   useEffect(() => {
-    getAllTags().then((tagData) => setTags(tagData));
+    getAllTags()
+      .then(tagData => tagData.sort((a, b) => a.label.localeCompare(b.label)))
+      .then(sortedTags => setTags(sortedTags));
   }, []);
+
+  const sortTags = (tagsArray) => {
+    return tagsArray.sort((a, b) => a.label.localeCompare(b.label));
+  };
 
   const handleCreateTag = (newTag) => {
     return createTag(newTag)
-      .then((response) => {
+      .then(response => {
         if (response && response.id) {
-          const updatedTags = [...tags, response];
-          updatedTags.sort((a, b) => a.label.localeCompare(b.label));
+          const updatedTags = sortTags([...tags, response]);
           setTags(updatedTags);
         } else {
           throw new Error('Failed to create tag.');
@@ -31,25 +36,25 @@ export const TagList = () => {
     if (window.confirm('Are you sure you want to delete this tag?')) {
       deleteTag(tagId)
         .then(() => {
-          const updatedTags = tags.filter(tag => tag.id !== tagId);
+          const updatedTags = sortTags(tags.filter(tag => tag.id !== tagId));
           setTags(updatedTags);
         })
-        .catch((error) => console.error(error));
+        .catch(error => console.error(error));
     }
   };
 
   const handleUpdateTag = (tagId, updatedTag) => {
     updateTag(tagId, updatedTag)
       .then(() => {
-        const updatedTags = tags.map(tag => {
+        const updatedTags = sortTags(tags.map(tag => {
           if (tag.id === tagId) {
             return { ...updatedTag, id: tagId };
           }
           return tag;
-        });
+        }));
         setTags(updatedTags);
       })
-      .catch((error) => console.error(error));
+      .catch(error => console.error(error));
   };
 
   const startEditing = (tagId, label) => {
@@ -68,7 +73,7 @@ export const TagList = () => {
       <div className="tag-container">
         <div className="left-side">
           <ul className="list">
-            {tags.map((tag) => (
+            {tags.map(tag => (
               <li key={tag.id} className="list-items">
                 <div className="list-name">{tag.label}</div>
                 <div className="edit-and-delete">

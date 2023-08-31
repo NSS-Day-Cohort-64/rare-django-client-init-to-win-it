@@ -11,7 +11,7 @@ export const CategoryForm = ({ handleCreateCategory }) => {
 
     handleCreateCategory(newCategory)
       .then(() => {
-        setCategoryLabel(''); // Clear the input field
+        setCategoryLabel(''); 
       })
       .catch((error) => {
         console.error("Failed to create category:", error);
