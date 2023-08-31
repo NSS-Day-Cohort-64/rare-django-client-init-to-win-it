@@ -12,7 +12,7 @@ export const EditPostForm = ({ token }) => {
     const [currentPost, setCurrentPost] = useState({
         title: "",
         content: "",
-        category: "",
+        category: 0,
         tags: [],
     });
 
@@ -23,12 +23,12 @@ export const EditPostForm = ({ token }) => {
 
         // Fetch the post data using postId
         getSinglePost(postId).then((postData) => {
+            console.log(postData)
             setCurrentPost({
                 author: token,
                 title: postData.title,
                 content: postData.content,
                 category: postData.category.id,
-                tags: postData.tags.map((tag) => tag.id),
             });
         });
     }, [postId]);
@@ -49,7 +49,6 @@ export const EditPostForm = ({ token }) => {
             title: currentPost.title,
             content: currentPost.content,
             category: parseInt(currentPost.category),
-            tags: currentPost.tags.map((tag) => parseInt(tag)),
         };
 
         editPost(postId, updatedPost)
@@ -90,9 +89,9 @@ export const EditPostForm = ({ token }) => {
                         value={currentPost.category}
                         onChange={handleChange}
                     >
-                        <option value="">Select a category</option>
+                        <option value="0">Select a category</option>
                         {categories.map((category) => (
-                            <option key={category.id} value={category.id}>
+                            <option key={category.label} value={category.id}>
                                 {category.label}
                             </option>
                         ))}
