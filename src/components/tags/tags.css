@@ -1,9 +1,16 @@
 .tag-container {
   display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-evenly; */
 }
 
-.left-side {
-  margin-left: 150px;
+/* .page-container {
+  display: flex;
+  justify-content: space-evenly;
+} */
+
+/* .left-side {
+  margin-left: 50px;
 }
 
 .page-header {
@@ -12,7 +19,7 @@
   margin-bottom: 10px;
   margin-left: 300px;
   margin-top: 50px;
-}
+} */
 
 .list {
   display: flex;
@@ -40,9 +47,9 @@
   flex: 1;
 }
 
-.edit-and-delete {
+/* .edit-and-delete {
   margin-left: 10px;
-}
+} */
 
 .edit-button,
 .delete-button {

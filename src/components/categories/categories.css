@@ -2,20 +2,28 @@
   display: flex;
 }
 
-.left-side {
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+/* .left-side {
   margin-left: 150px;
 }
 
 .right-side {
   margin-left: 300px;
-}
+} */
 
 .page-header {
   font-weight: 800;
   font-size: 24px;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 10px;
   margin-left: 250px;
-  margin-top: 50px
+  margin-top: 50px */
 }
 
 .list {
