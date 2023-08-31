@@ -45,4 +45,13 @@ export const editPost = (postId, updatedPostData) => {
     });
 };
 
-
+export const createPost = (newPost) => {
+  return fetch("http://localhost:8000/posts", {
+    method: "POST",
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newPost),
+  });
+};

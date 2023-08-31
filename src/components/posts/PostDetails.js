@@ -22,9 +22,9 @@ useEffect(() => {
   return (
     <section className="post">
       <h3 className="post__title">{post.title}</h3>
-      <div className="post__author">Author: {post.author?.full_name}</div>
-      <div className="post__category">Category: {post.category?.label}</div>
-      <div className="post__publicationDate">Publication Date: {post.publication_date}</div>
+      <div className="post__author">{post.author?.full_name}</div>
+      <div className="post__category">{post.category?.label}</div>
+      <div className="post__publicationDate">{post.publication_date}</div>
       <br />
       <div className="post__content">{post.content}</div>
       <br />

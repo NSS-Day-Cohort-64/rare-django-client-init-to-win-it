@@ -15,28 +15,25 @@ export const UserList = () => {
     }, []);
 
     return (
-        <div className="page-container">
-            <h1 className="page-header">User Management</h1>
-            <div className="user-container">
-                <div className="left-side">
-                    <ul className="list">
+        <div className="user-page-container">
+            <h1 className="user-page-header">User Management</h1>
+            <div className="user-user-container">
+                <div className="user-left-side">
+                    <ul className="user-list">
                         {users.map((user) => (
-                            <li key={user.id} className="list-items">
-                                <div className="list-name">Username: {user.username}</div>
-                                <div className="list-name">First Name: {user.first_name}</div>
-                                <div className="list-name">Last Name: {user.last_name}</div>
-                                <div className="list-name">Email: {user.email}</div>
-                                <div className="edit-and-delete">
-                                    <button className="edit-button">
-                                        <Link to={`/users/${user.id}/edit`}>Edit</Link>
+                            <li key={user.id} className="user-list-items">
+                                <div className="user-list-name">Username: {user.username}</div>
+                                <div className="user-list-name">Name: {`${user.first_name} ${user.last_name}`}</div>
+                                <div className="user-list-name">Email: {user.email}</div>
+                                <div className="user-profile">
+                                    <button className="user-profile-button">
+                                        <Link to={`/users/${user.id}`}>View Profile</Link>
                                     </button>{" "}
-                                    <button className="delete-button">Delete</button>
                                 </div>
                             </li>
                         ))}
                     </ul>
                 </div>
-                <div className="right-side">{/* Additional content here */}</div>
             </div>
         </div>
     );

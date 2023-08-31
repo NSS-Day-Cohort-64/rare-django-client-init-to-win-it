@@ -10,10 +10,26 @@ import { TagList } from "../components/tags/TagList"
 import { Category } from "../components/categories/Category"
 import { UserPosts } from "../components/posts/UserPosts"
 import { UserList } from "../components/users/UserList"
-import { Comments } from "../components/comments/comments"
+import { PostForm } from "../components/posts/PostForm"
+import { useState, useEffect } from "react"
+import { getCategories } from "../managers/CategoryManager"
+import { getAllTags } from "../managers/TagManager"
+import { UserProfile } from "../components/users/UserDetails";  // Adjust the path as needed
+
 
 
 export const ApplicationViews = ({ token, setToken }) => {
+
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    // Fetch categories and tags from the server and update the state
+    getCategories().then((categoriesData) => setCategories(categoriesData));
+    getAllTags().then((tagsData) => setTags(tagsData));
+  }, []);
+
+
   return <>
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />} />
@@ -24,6 +40,7 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/posts">
           <Route index element={<PostList setToken={setToken} />} />
           <Route path=":postId" element={<PostDetails setToken={setToken} />} />
+          <Route path="create" element={<PostForm token={token} setToken={setToken} categories={categories} tags={tags} />} />
         </Route>
         <Route path="/comments/:postId" element={<Comments token={token} />} />
 
@@ -40,6 +57,7 @@ export const ApplicationViews = ({ token, setToken }) => {
 
         <Route path="/users">
           <Route index element={<UserList setToken={setToken} />} />
+          <Route path=":userId" element={<UserProfile />} />
         </Route>
       </Route>
 

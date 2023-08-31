@@ -1,65 +1,76 @@
-.category-container {
+/* General layout */
+.user-page-container {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  width: 100%;
+}
+
+.user-page-header {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.user-user-container {
   display: flex;
-}
-
-.left-side {
-  margin-left: 150px;
-}
-
-.right-side {
-  margin-left: 300px;
-}
-
-.page-header {
-  font-weight: 800;
-  font-size: 24px;
-  margin-bottom: 10px;
-  margin-left: 250px;
-  margin-top: 50px
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-}
-
-.list-items {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  /* Distributes items on both sides */
-  border: 1px solid;
-  height: 40px;
-  width: 400px;
-  padding: 5px;
+  max-width: 100%;
+  width: 100%;
 }
 
-.list-name {
-  /* Determines how much space the list name takes */
+.user-left-side {
+  flex: 2;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.user-right-side {
   flex: 1;
-  /* This will make the list name expand to fill the available space */
-}
-
-.edit-and-delete {
-  /* spacing between the edit and delete buttons */
-  margin-left: 10px;
-}
-
-.edit-button {
-  height: 25px;
-}
-
-.delete-button {
-  height: 25px;
-}
-
-.form {
-  border: 1px solid;
-  border-radius: 20px;
   padding: 20px;
 }
 
-.form-title {
-  font-weight: 800;
-  font-size: 18px;
+/* List styling */
+.user-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.user-list-items:hover {
+  background-color: #a4fcd3;  /* Darker gray background on hover */
+}
+
+.user-list-items {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 40px;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.user-list-name {
+  margin: 15px 0;
+  font-size: 1.2em;
+}
+
+/* Button styling */
+.user-profile-button {
+  background-color: rgb(84, 177, 149);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.user-profile-button a {
+  color: white;
+  text-decoration: none;
+}
+
+.user-profile-button:hover {
+  background-color: #0056b3;
 }
