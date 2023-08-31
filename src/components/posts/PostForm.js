@@ -29,7 +29,7 @@ export const PostForm = ({ categories, tags, token }) => {
     };
 
     return (
-        <div>
+        <div className="post-form-container">
             <h2>Create Post</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="postTitle">Title:</label>
