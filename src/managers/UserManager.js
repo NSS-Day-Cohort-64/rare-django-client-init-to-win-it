@@ -16,3 +16,17 @@ const getAuthHeaders = () => ({
     });
   };
   
+
+  export const getUserById = (userId) => {
+    return fetch(`http://localhost:8000/users/${userId}`, {
+      headers: getAuthHeaders()
+    })
+      .then(res => res.json());
+  };
+
+  export const getAuthorById = (authorId) => {
+    return fetch(`http://localhost:8000/author/${authorId}`, {
+        headers: getAuthHeaders()
+        })
+        .then(res => res.json());
+    };
