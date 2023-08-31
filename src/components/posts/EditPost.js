@@ -1,58 +1,112 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { editPost, getSinglePost } from '../../managers/PostManager'
-import { getCategories } from '../../managers/CategoryManager'
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getSinglePost, editPost } from "../../managers/PostManager";
+import { getAllTags } from "../../managers/TagManager";
+import { getCategories } from "../../managers/CategoryManager";
 
+export const EditPostForm = ({ token }) => {
+    const navigate = useNavigate();
+    const { postId } = useParams();
+    const [categories, setCategories] = useState([]);
+    const [tags, setTags] = useState([]);
+    const [currentPost, setCurrentPost] = useState({
+        title: "",
+        content: "",
+        category: 0,
+        tags: [],
+    });
 
-export function EditPostDetails({ onSave }) {
+    useEffect(() => {
+        // Fetch categories and tags here
+        getCategories().then((categoriesData) => setCategories(categoriesData));
+        getAllTags().then((tagsData) => setTags(tagsData));
 
-  const { postId } = useParams()
+        // Fetch the post data using postId
+        getSinglePost(postId).then((postData) => {
+            console.log(postData)
+            setCurrentPost({
+                author: token,
+                title: postData.title,
+                content: postData.content,
+                category: postData.category.id,
+            });
+        });
+    }, [postId]);
 
-  const [categories, setCategories] = useState({})
-  const [post, setPost] = useState({
-    user_id: 0,
-    category_id: 0,
-    title: "",
-    publication_date: "",
-    image_url: "",
-    content: "",
-    approved: 0
-  })
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setCurrentPost((prevState) => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
 
-  useEffect(() => {
-    getSinglePost(postId)
-      .then((response) => response.json())
-      .then((data) => {
-        setPost(data);
-      });
-  }, []);
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-  useEffect(() => {
-    getCategories()
-      .then((categoryList) => {
-        setCategories(categoryList);
-      });
-  }, []);
+        const updatedPost = {
+            id: postId,
+            title: currentPost.title,
+            content: currentPost.content,
+            category: parseInt(currentPost.category),
+        };
 
+        editPost(postId, updatedPost)
+            .then(() => navigate(`/posts/${postId}`));
+    };
 
-  //this is totally a work in progress..
-  const handleSaveButtonClick = (event) => {
-    event.preventDefault();
-    editPost(postId, post)
-      .then((response) => response.json())
-      .then((updatedPost) => {
-        onSave(updatedPost);
-        setPost(updatedPost)
-        window.alert("Your Post Has Been Successfully Updated");
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the update process
-        console.error("Error updating post:", error.message);
-      });
-  };
+    return (
+        <form className="postForm">
+            <h2 className="postForm__title">Edit Post</h2>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="title">Title:</label>
+                    <input
+                        type="text"
+                        name="title"
+                        required
+                        autoFocus
+                        className="form-control"
+                        value={currentPost.title}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="content">Content:</label>
+                    <textarea
+                        name="content"
+                        required
+                        className="form-control"
+                        value={currentPost.content}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="category">Category:</label>
+                    <select
+                        name="category"
+                        className="form-control"
+                        value={currentPost.category}
+                        onChange={handleChange}
+                    >
+                        <option value="0">Select a category</option>
+                        {categories.map((category) => (
+                            <option key={category.label} value={category.id}>
+                                {category.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                {/* Add tags here */}
+            </fieldset>
 
-
-  return (
-    ""
-  )
-}
+            <button
+                type="submit"
+                onClick={handleSubmit}
+                className="btn btn-primary"
+            >
+                Update
+            </button>
+        </form>
+    );
+};

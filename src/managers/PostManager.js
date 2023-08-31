@@ -36,13 +36,6 @@ export const editPost = (postId, updatedPostData) => {
     headers: getAuthHeaders(),
     body: JSON.stringify(updatedPostData),
   })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to edit post.");
-      }
-    });
 };
 
 export const createPost = (newPost) => {
