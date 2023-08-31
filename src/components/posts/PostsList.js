@@ -27,10 +27,6 @@ export const PostList = () => {
                 <div>{postObject.author.full_name}</div>
                 <div>{postObject.category.label}</div>
               </section>
-              <button    
-             onClick={() => {
-              navigate(`/posts/${postObject.id}/edit`);
-             }}>Edit</button>
             </div>
           })}
       </article >

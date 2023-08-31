@@ -34,7 +34,10 @@ function PostDetails() {
       <br />
       <div className="post__content">{post.content}</div>
       <br />
-      
+      <button    
+            onClick={() => {
+              navigate(`/posts/${postId}/edit`);
+            }}>Edit</button>
       <h4>Comments:</h4>
       <ul className="comments_list">
         {comments.map(comment => (
