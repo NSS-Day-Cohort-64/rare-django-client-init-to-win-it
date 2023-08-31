@@ -14,6 +14,8 @@ import { PostForm } from "../components/posts/PostForm"
 import { useState, useEffect } from "react"
 import { getCategories } from "../managers/CategoryManager"
 import { getAllTags } from "../managers/TagManager"
+import { UserProfile } from "../components/users/UserDetails";  // Adjust the path as needed
+
 
 
 export const ApplicationViews = ({ token, setToken }) => {
@@ -53,6 +55,7 @@ export const ApplicationViews = ({ token, setToken }) => {
 
         <Route path="/users">
           <Route index element={<UserList setToken={setToken} />} />
+          <Route path=":userId" element={<UserProfile />} />
         </Route>
       </Route>
 
